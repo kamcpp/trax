@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"github.com/kamcpp/trax/pkg/trax"
 	"github.com/kamcpp/trax/tests/e2e/common/framework"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 // TestTopicExchangeTopology verifies that the TRAX topic exchange is correctly
@@ -41,7 +41,7 @@ func TestTopicExchangeTopology(t *testing.T) {
 		TestDBName:     "",
 		AutoSwitchDB:   true,
 		CaptureResults: true,
-		InitSchemas:    []string{"trax", "laser", "test_cluster"},
+		InitSchemas:    []string{"trax", "test_cluster"},
 		ClusterID:      "e2e_test_cluster",
 	})
 	defer env.Cleanup()
@@ -154,7 +154,7 @@ func TestQueueCountReduction(t *testing.T) {
 		TestDBName:     "",
 		AutoSwitchDB:   true,
 		CaptureResults: true,
-		InitSchemas:    []string{"trax", "laser", "test_cluster"},
+		InitSchemas:    []string{"trax", "test_cluster"},
 		ClusterID:      "e2e_test_cluster",
 	})
 	defer env.Cleanup()
@@ -229,7 +229,7 @@ func TestMessageDeliveryWithTopicExchange(t *testing.T) {
 		TestDBName:     "",
 		AutoSwitchDB:   true,
 		CaptureResults: true,
-		InitSchemas:    []string{"trax", "laser", "test_cluster"},
+		InitSchemas:    []string{"trax", "test_cluster"},
 		ClusterID:      "e2e_test_cluster",
 	})
 	defer env.Cleanup()

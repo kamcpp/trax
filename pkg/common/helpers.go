@@ -7,12 +7,8 @@ import (
 	"math"
 	"math/big"
 	"os"
-	"reflect"
 	"strconv"
 	"strings"
-
-	ethcommon "github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
 )
 
 func Paginate[T any](items []T, page, pageSize int) []T {
@@ -33,29 +29,12 @@ func Reverse[S ~[]E, E any](s S) {
 	}
 }
 
-func AddressToStr(addr ethcommon.Address) string {
-	zeroAddressBytes := ethcommon.FromHex("0x0000000000000000000000000000000000000000")
-	addrBytes := addr.Bytes()
-	if reflect.DeepEqual(addrBytes, zeroAddressBytes) {
-		return ""
-	}
-	return strings.ToLower(addr.String())
-}
-
 func BigIntToStr(num *big.Int) string {
 	numStr := num.String()
 	if numStr == "0" {
 		return ""
 	}
 	return numStr
-}
-
-func GetTxSender(tx *types.Transaction) (*ethcommon.Address, error) {
-	sender, err := types.Sender(types.NewLondonSigner(tx.ChainId()), tx)
-	if err != nil {
-		return nil, err
-	}
-	return &sender, nil
 }
 
 func MustStrToInt64(decimalStr DecimalStr) int64 {
@@ -154,31 +133,11 @@ func MustMarshalToJsonString(v any) string {
 	return string(data)
 }
 
-// GetServiceBaseURL returns the base URL for an HTTP service from environment variables.
-// serviceName: short service name (e.g., "accmgr", "instrmgr", "lcmgr", "lasersvc", "treassvc")
-// Automatically maps to full env var names and appends _BASE_URL
-// Returns: full base URL including protocol and /api/v1 (e.g., "http://host:port/api/v1")
-// Panics if environment variable is not set
+// GetServiceBaseURL returns the base URL for a standalone TRAX HTTP service.
+// Supported names are limited to the daemons this repo actually runs and tests.
 func GetServiceBaseURL(serviceName string) string {
-	// Map short service names to full environment variable names
 	var envVarName string
 	switch strings.ToLower(serviceName) {
-	case "accmgr":
-		envVarName = "ACCOUNT_MANAGER_BASE_URL"
-	case "instrmgr":
-		envVarName = "INSTRUMENT_MANAGER_BASE_URL"
-	case "lasersvc":
-		envVarName = "LASER_SERVICE_BASE_URL"
-	case "treassvc":
-		envVarName = "TREASURY_SERVICE_BASE_URL"
-	case "lcmgr":
-		envVarName = "ETH_SMART_CONTRACT_MANAGER_BASE_URL"
-	case "csdmsggw":
-		envVarName = "CSD_MESSAGE_GATEWAY_BASE_URL"
-	case "csdsender":
-		envVarName = "CSD_SENDER_BASE_URL"
-	case "csdrecv":
-		envVarName = "CSD_RECEIVER_BASE_URL"
 	case "traxcoord", "traxcoord1", "traxcoord2", "traxcoord3":
 		envVarName = "TRAX_COORDINATOR_BASE_URL"
 	case "test.traxcoord1":
@@ -189,76 +148,6 @@ func GetServiceBaseURL(serviceName string) string {
 		envVarName = "TRAX_COORDINATOR3_BASE_URL"
 	case "traxctrl":
 		envVarName = "TRAX_CONTROLLER_BASE_URL"
-	case "exchange-traxctrl":
-		envVarName = "EXCHANGE_TRAX_CONTROLLER_BASE_URL"
-	case "exchange-accmgr":
-		envVarName = "EXCHANGE_ACCOUNT_MANAGER_BASE_URL"
-	case "exchange-instrmgr":
-		envVarName = "EXCHANGE_INSTRUMENT_MANAGER_BASE_URL"
-	case "exchange-sdmgr":
-		envVarName = "EXCHANGE_SECURITY_DEPOSITORY_MANAGER_BASE_URL"
-	case "exchange-configmgr":
-		envVarName = "EXCHANGE_CONFIG_MANAGER_BASE_URL"
-	case "exchange-listingmgr":
-		envVarName = "EXCHANGE_LISTING_MANAGER_BASE_URL"
-	case "exchange-tradeidxer":
-		envVarName = "EXCHANGE_TRADE_INDEXER_BASE_URL"
-	case "exchange-fixreceiver":
-		envVarName = "EXCHANGE_FIX_RECEIVER_BASE_URL"
-	case "exchange-csdmsggw":
-		envVarName = "EXCHANGE_CSD_MESSAGE_GATEWAY_BASE_URL"
-	case "prtagent-traxctrl":
-		envVarName = "PRTAGENT_TRAX_CONTROLLER_BASE_URL"
-	case "prtagent-accmgr":
-		envVarName = "PRTAGENT_ACCOUNT_MANAGER_BASE_URL"
-	case "prtagent-instrmgr":
-		envVarName = "PRTAGENT_INSTRUMENT_MANAGER_BASE_URL"
-	case "prtagent-sdmgr":
-		envVarName = "PRTAGENT_SECURITY_DEPOSITORY_MANAGER_BASE_URL"
-	case "prtagent-configmgr":
-		envVarName = "PRTAGENT_CONFIG_MANAGER_BASE_URL"
-	case "prtagent-marketmgr":
-		envVarName = "PRTAGENT_MARKET_MANAGER_BASE_URL"
-	case "prtagent-fixclient":
-		envVarName = "PRTAGENT_FIX_CLIENT_BASE_URL"
-	case "prtagent-treassvc":
-		envVarName = "PRTAGENT_TREASURY_SERVICE_BASE_URL"
-	case "prtagent-treasidxer":
-		envVarName = "PRTAGENT_TREASURY_INDEXER_BASE_URL"
-	case "prtagent-prtagent":
-		envVarName = "PRTAGENT_PARTICIPANT_AGENT_GRPC_URL"
-	case "iso20022-processor", "iso20022processor":
-		envVarName = "ISO20022_PROCESSOR_BASE_URL"
-	case "sdmgr":
-		envVarName = "SECURITY_DEPOSITORY_MANAGER_BASE_URL"
-	case "marketmgr":
-		envVarName = "MARKET_MANAGER_BASE_URL"
-	case "configmgr":
-		envVarName = "CONFIG_MANAGER_BASE_URL"
-	case "listingmgr":
-		envVarName = "LISTING_MANAGER_BASE_URL"
-	case "fixclient":
-		envVarName = "FIX_CLIENT_BASE_URL"
-	case "signersvc":
-		envVarName = "SIGNER_SERVICE_BASE_URL"
-	case "tradeidxer":
-		envVarName = "TRADE_INDEXER_BASE_URL"
-	case "treasidxer":
-		envVarName = "TREASURY_INDEXER_BASE_URL"
-	case "csd_msggw":
-		envVarName = "CSD_MSG_GW_BASE_URL"
-	case "csd_accmgr":
-		envVarName = "CSD_ACCOUNT_MANAGER_BASE_URL"
-	case "actusvc":
-		envVarName = "STATE_ACTUATOR_SERVICE_BASE_URL"
-	case "prtagent", "prtagentgrpc", "prtagentgrpcsvc":
-		envVarName = "PARTICIPANT_AGENT_GRPC_URL"
-	case "prtagent-http":
-		// Daemon's HTTP testing port (health, clear-caches, setdbname).
-		// Distinct from the gRPC URL above because setServiceDatabase
-		// drives the registered /api/v1/experimental/testing/setdbname
-		// route, which only the HTTP server exposes.
-		envVarName = "PRTAGENT_PARTICIPANT_AGENT_HTTP_URL"
 	default:
 		panic(fmt.Sprintf("unknown service name: %s", serviceName))
 	}

@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
 	"github.com/kamcpp/trax/pkg/trax"
 	"github.com/kamcpp/trax/tests/e2e/common/framework"
+	"github.com/stretchr/testify/require"
 )
 
 // TestSagaHierarchyFields verifies that saga instances include parent-child hierarchy fields
@@ -40,7 +40,7 @@ func TestSagaHierarchyFields(t *testing.T) {
 		TestDBName:     "",
 		AutoSwitchDB:   true,
 		CaptureResults: true,
-		InitSchemas:    []string{"trax", "laser", "test_cluster"},
+		InitSchemas:    []string{"trax", "test_cluster"},
 		ClusterID:      "e2e_test_cluster",
 	})
 	defer env.Cleanup()

@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
 	"github.com/kamcpp/trax/pkg/trax"
 	"github.com/kamcpp/trax/tests/e2e/common/framework"
+	"github.com/stretchr/testify/require"
 )
 
 // subSagaExecutors returns executor configs for all deep sub-saga test templates.
@@ -57,7 +57,7 @@ func setupSubSagaEnv(t *testing.T) (*framework.E2EEnvironment, func()) {
 		TestDBName:      "",
 		AutoSwitchDB:    true,
 		CaptureResults:  true,
-		InitSchemas:     []string{"trax", "laser", "test_cluster"},
+		InitSchemas:     []string{"trax", "test_cluster"},
 		ClusterID:       "e2e_test_cluster",
 	})
 

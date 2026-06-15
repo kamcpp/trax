@@ -4,8 +4,8 @@ import (
 	"sync"
 	"testing"
 
-	amqp "github.com/rabbitmq/amqp091-go"
 	"github.com/kamcpp/trax/pkg/common"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 // Note: These are unit tests that don't require real RabbitMQ connection.

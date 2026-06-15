@@ -8,4 +8,4 @@ FROM debian:bookworm-slim
 RUN apt-get update && apt-get install -y ca-certificates curl && rm -rf /var/lib/apt/lists/*
 COPY --from=build /out/traxctrl /usr/local/bin/traxctrl
 COPY --from=build /out/traxcoord /usr/local/bin/traxcoord
-ENTRYPOINT ["/usr/local/bin/traxctrl"]
+CMD ["/usr/local/bin/traxctrl"]

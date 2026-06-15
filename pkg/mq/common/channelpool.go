@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	amqp "github.com/rabbitmq/amqp091-go"
 	"github.com/kamcpp/trax/pkg/common"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 // ChannelPool manages a pool of RabbitMQ channels for thread-safe operations

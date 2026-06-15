@@ -2,11 +2,12 @@ REGISTRY ?= localhost:5555
 IMAGE_DAEMONS ?= trax.daemons
 IMAGE_CLIS ?= trax.clis
 TAG ?= latest
+TEST_SESSION_ID ?= trax-$(shell date +%Y%m%d%H%M%S)
 WIKI_DIR ?= wiki
 WIKI_PORT ?= 3334
 WIKI_HTML ?= $(WIKI_DIR)/index.html
 
-.PHONY: build-daemons build-clis test-unit swagger images trax-e2e-up trax-e2e-down trax-e2e-clean trax-e2e-full wiki
+.PHONY: build-daemons build-clis test-unit swagger images trax-e2e-up trax-e2e-down trax-e2e-clean trax-e2e-full trax-e2e-logs wiki
 
 build-daemons:
 	go build -o ./bin/traxctrl ./cmd/traxctrl
@@ -57,13 +58,19 @@ $(WIKI_HTML):
 		'</html>' > $(WIKI_HTML)
 
 trax-e2e-clean:
-	docker compose -f tests/e2e/trax/docker-compose.yaml down -v --remove-orphans || true
+	TEST_SESSION_ID=$(TEST_SESSION_ID) docker compose -f tests/e2e/trax/docker-compose.yaml down -v --remove-orphans || true
 
 trax-e2e-up:
-	docker compose -f tests/e2e/trax/docker-compose.yaml up -d
+	TEST_SESSION_ID=$(TEST_SESSION_ID) BRANCH_TAG=$(TAG) docker compose -f tests/e2e/trax/docker-compose.yaml up -d --wait --scale test-runner=0
 
 trax-e2e-down:
-	docker compose -f tests/e2e/trax/docker-compose.yaml down
+	TEST_SESSION_ID=$(TEST_SESSION_ID) docker compose -f tests/e2e/trax/docker-compose.yaml down
+
+trax-e2e-logs:
+	TEST_SESSION_ID=$(TEST_SESSION_ID) docker compose -f tests/e2e/trax/docker-compose.yaml logs -f
 
 trax-e2e-full: trax-e2e-clean
-	BRANCH_TAG=$(TAG) docker compose -f tests/e2e/trax/docker-compose.yaml up --abort-on-container-exit --exit-code-from test-runner
+	@set -e; \
+	trap 'TEST_SESSION_ID=$(TEST_SESSION_ID) docker compose -f tests/e2e/trax/docker-compose.yaml down -v --remove-orphans' EXIT; \
+	TEST_SESSION_ID=$(TEST_SESSION_ID) BRANCH_TAG=$(TAG) docker compose -f tests/e2e/trax/docker-compose.yaml up -d --wait --scale test-runner=0; \
+	TEST_SESSION_ID=$(TEST_SESSION_ID) BRANCH_TAG=$(TAG) docker compose -f tests/e2e/trax/docker-compose.yaml run --rm test-runner

@@ -90,29 +90,3 @@ func GinLoggerMiddleware() gin.HandlerFunc {
 		)...) */
 	}
 }
-
-func ApiKeyCheckerMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var apiKey string
-		apiKey = c.GetHeader("x-agora-api-key")
-		if len(apiKey) == 0 {
-			var found bool
-			apiKey, found = c.GetQuery("agora-api-key")
-			if !found {
-				L.Warn("api-key header not found", F(c)...)
-				c.JSON(401, gin.H{})
-				c.Abort()
-				return
-			}
-		}
-		clients := GetClients()
-		_, ok := clients[apiKey]
-		if !ok {
-			L.Warn("no client found", F(c)...)
-			c.JSON(401, gin.H{})
-			c.Abort()
-			return
-		}
-		c.Next()
-	}
-}

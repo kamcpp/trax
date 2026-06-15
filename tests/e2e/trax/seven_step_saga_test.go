@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
 	"github.com/kamcpp/trax/pkg/trax"
 	"github.com/kamcpp/trax/tests/e2e/common/framework"
+	"github.com/stretchr/testify/require"
 )
 
 // TestSevenStepSaga tests a complete 7-step saga workflow
@@ -39,7 +39,7 @@ func TestSevenStepSaga(t *testing.T) {
 		TestDBName:      "", // Generate random name
 		AutoSwitchDB:    true,
 		CaptureResults:  true,
-		InitSchemas:     []string{"trax", "laser", "test_cluster"}, // Initialize schemas
+		InitSchemas:     []string{"trax", "test_cluster"}, // Initialize schemas
 		ClusterID:       "e2e_test_cluster",
 		AdditionalSetup: nil, // No additional setup needed
 	})
@@ -145,7 +145,7 @@ func TestSevenStepSagaReliability(t *testing.T) {
 		TestDBName:      "", // Generate random name
 		AutoSwitchDB:    true,
 		CaptureResults:  true,
-		InitSchemas:     []string{"trax", "laser", "test_cluster"},
+		InitSchemas:     []string{"trax", "test_cluster"},
 		ClusterID:       "e2e_test_cluster",
 		AdditionalSetup: nil,
 	})
@@ -222,7 +222,7 @@ func TestTwoParallelSagasWithDelay(t *testing.T) {
 		TestDBName:      "", // Generate random name
 		AutoSwitchDB:    true,
 		CaptureResults:  true,
-		InitSchemas:     []string{"trax", "laser", "test_cluster"},
+		InitSchemas:     []string{"trax", "test_cluster"},
 		ClusterID:       "e2e_test_cluster",
 		AdditionalSetup: nil,
 	})
@@ -316,7 +316,7 @@ func TestTenParallelSagasRandomized(t *testing.T) {
 		TestDBName:      "", // Generate random name
 		AutoSwitchDB:    true,
 		CaptureResults:  true,
-		InitSchemas:     []string{"trax", "laser", "test_cluster"},
+		InitSchemas:     []string{"trax", "test_cluster"},
 		ClusterID:       "e2e_test_cluster",
 		AdditionalSetup: nil,
 	})

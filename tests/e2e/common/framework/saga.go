@@ -53,7 +53,7 @@ func CreateSevenStepTemplateViaTraxcli(t *testing.T, dbName string) error {
 	t.Helper()
 
 	// Build traxcli command
-	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli traxcli template create-seven-step --db-host=postgres --db-port=5432 --db-user=postgres --db-password=postgres --db-name=%s",
+	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli template create-seven-step --db-host=postgres --db-port=5432 --db-user=postgres --db-password=postgres --db-name=%s",
 		dbName)
 
 	t.Logf("Creating saga templates via traxcli: %s", cmd)
@@ -89,7 +89,7 @@ func SubmitSagaViaTraxcli(t *testing.T, submitterID string, clusterID string, te
 	t.Helper()
 
 	// Build traxcli command (use full path since PATH may not be set)
-	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli traxcli submitter --submitter-id=%s --cluster-id=%s --template-id=%s --submit-once",
+	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli submitter --submitter-id=%s --cluster-id=%s --template-id=%s --submit-once",
 		submitterID, clusterID, templateID)
 
 	t.Logf("Submitting saga via traxcli: %s", cmd)
@@ -821,7 +821,7 @@ func StartExecutorsViaDockerExec(t *testing.T, executors []ExecutorConfig, clust
 func CreateCompensationTemplatesViaTraxcli(t *testing.T, dbName string) error {
 	t.Helper()
 
-	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli traxcli template create-compensation-tests --db-host=postgres --db-port=5432 --db-user=postgres --db-password=postgres --db-name=%s",
+	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli template create-compensation-tests --db-host=postgres --db-port=5432 --db-user=postgres --db-password=postgres --db-name=%s",
 		dbName)
 
 	t.Logf("Creating compensation templates via traxcli: %s", cmd)
@@ -840,7 +840,7 @@ func CreateCompensationTemplatesViaTraxcli(t *testing.T, dbName string) error {
 func CreateSubSagaTemplatesViaTraxcli(t *testing.T, dbName string) error {
 	t.Helper()
 
-	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli traxcli template create-sub-saga-tests --db-host=postgres --db-port=5432 --db-user=postgres --db-password=postgres --db-name=%s",
+	cmd := fmt.Sprintf("docker exec trax-traxcli-submitter-1 /usr/local/bin/traxcli template create-sub-saga-tests --db-host=postgres --db-port=5432 --db-user=postgres --db-password=postgres --db-name=%s",
 		dbName)
 
 	t.Logf("Creating sub-saga templates via traxcli: %s", cmd)

@@ -12,8 +12,8 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/lib/pq"
 	"github.com/kamcpp/trax/pkg/common"
+	"github.com/lib/pq"
 )
 
 type psqlStore struct {

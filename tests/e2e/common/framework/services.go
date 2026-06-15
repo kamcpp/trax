@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
 	"github.com/kamcpp/trax/pkg/common"
+	"github.com/stretchr/testify/require"
 )
 
 // GetServiceBaseURL returns the base URL for a service

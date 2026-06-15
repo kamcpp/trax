@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/kamcpp/trax/pkg/common"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
-	"github.com/kamcpp/trax/pkg/common"
 )
 
 // initTestLogger initializes the global logger for tests that call code

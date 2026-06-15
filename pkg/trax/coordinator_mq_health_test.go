@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/stretchr/testify/require"
 	mqcommon "github.com/kamcpp/trax/pkg/mq/common"
+	"github.com/stretchr/testify/require"
 )
 
 // TestIsMQHealthy_NilConnection verifies isMQHealthy returns false when

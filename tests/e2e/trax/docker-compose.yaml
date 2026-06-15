@@ -12,8 +12,6 @@ services:
       interval: 2s
       timeout: 5s
       retries: 10
-    ports:
-      - "5432:5432"
 
   redis:
     image: redis:7-alpine
@@ -22,8 +20,6 @@ services:
       interval: 2s
       timeout: 3s
       retries: 10
-    ports:
-      - "6379:6379"
 
   rabbitmq:
     image: rabbitmq:3.12-management-alpine
@@ -35,18 +31,12 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
-    ports:
-      - "5672:5672"
-      - "15672:15672"
 
   init-db:
     image: postgres:15
     command: >
       bash -c "
-      psql -h postgres -U postgres -d agora_db -f /scripts/init_shared_pgsql.sql &&
       psql -h postgres -U postgres -d agora_db -f /scripts/init_trax_pgsql.sql &&
-      psql -h postgres -U postgres -d agora_db -f /scripts/init_laser_pgsql.sql &&
-      psql -h postgres -U postgres -d agora_db -f /scripts/init_instrmgr_pgsql.sql &&
       psql -h postgres -U postgres -d agora_db -f /scripts/init_test_cluster.sql
       "
     environment:
@@ -55,10 +45,7 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - ../../../deploy/k8s/init/init_shared_pgsql.sql:/scripts/init_shared_pgsql.sql:ro
       - ../../../deploy/k8s/init/init_trax_pgsql.sql:/scripts/init_trax_pgsql.sql:ro
-      - ../../../deploy/k8s/init/init_laser_pgsql.sql:/scripts/init_laser_pgsql.sql:ro
-      - ../../../deploy/k8s/init/init_instrmgr_pgsql.sql:/scripts/init_instrmgr_pgsql.sql:ro
       - ./init_test_cluster.sql:/scripts/init_test_cluster.sql:ro
 
   traxctrl:
@@ -88,8 +75,6 @@ services:
       interval: 2s
       timeout: 3s
       retries: 20
-    ports:
-      - "17200:17202"
 
   traxcoord1:
     image: localhost:5555/trax.daemons:${BRANCH_TAG:-latest}
@@ -119,8 +104,6 @@ services:
       interval: 2s
       timeout: 3s
       retries: 20
-    ports:
-      - "17220:17201"
 
   traxcoord2:
     image: localhost:5555/trax.daemons:${BRANCH_TAG:-latest}
@@ -150,8 +133,6 @@ services:
       interval: 2s
       timeout: 3s
       retries: 20
-    ports:
-      - "17221:17201"
 
   traxcoord3:
     image: localhost:5555/trax.daemons:${BRANCH_TAG:-latest}
@@ -181,8 +162,6 @@ services:
       interval: 2s
       timeout: 3s
       retries: 20
-    ports:
-      - "17222:17201"
 
   traxcli-submitter:
     image: localhost:5555/trax.clis:${BRANCH_TAG:-latest}

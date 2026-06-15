@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
 	"github.com/kamcpp/trax/pkg/trax"
 	"github.com/kamcpp/trax/tests/e2e/common/framework"
+	"github.com/stretchr/testify/require"
 )
 
 // compensationExecutors returns the executor configs for all compensation test templates.
@@ -45,7 +45,7 @@ func setupCompensationEnv(t *testing.T) (*framework.E2EEnvironment, func()) {
 		TestDBName:      "",
 		AutoSwitchDB:    true,
 		CaptureResults:  true,
-		InitSchemas:     []string{"trax", "laser", "test_cluster"},
+		InitSchemas:     []string{"trax", "test_cluster"},
 		ClusterID:       "e2e_test_cluster",
 	})
 

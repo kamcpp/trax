@@ -41,7 +41,7 @@ func initConn(_ctx context.Context) error {
 	config := amqp.Config{
 		Heartbeat: 60 * time.Second,
 		Dial: func(network, addr string) (net.Conn, error) {
-			return amqp.DefaultDial(time.Second * 300)(network, addr)
+			return amqp.DefaultDial(time.Second*300)(network, addr)
 		},
 	}
 	var err error

@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
 	"github.com/kamcpp/trax/pkg/trax"
 	"github.com/kamcpp/trax/tests/e2e/common/framework"
+	"github.com/stretchr/testify/require"
 )
 
 // setupIdempotencyEnv creates a fresh E2E environment with the seven_step_sleep_saga template.
@@ -34,7 +34,7 @@ func setupIdempotencyEnv(t *testing.T) *framework.E2EEnvironment {
 		TestDBName:     "",
 		AutoSwitchDB:   true,
 		CaptureResults: true,
-		InitSchemas:    []string{"trax", "laser", "test_cluster"},
+		InitSchemas:    []string{"trax", "test_cluster"},
 		ClusterID:      "e2e_test_cluster",
 	})
 

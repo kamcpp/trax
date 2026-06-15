@@ -92,11 +92,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Default packages: laser and lcmgr
+# Default package: TRAX E2E suite
 if [ ${#PACKAGES[@]} -eq 0 ]; then
   PACKAGES=(
-    "github.com/kamcpp/trax/pkg/laser/..."
-    "github.com/kamcpp/trax/pkg/daemons/lcmgr/..."
+    "github.com/kamcpp/trax/tests/e2e/trax/..."
   )
 fi
 
@@ -119,23 +118,23 @@ echo "Results Directory: $TEST_RESULTS_BASE_DIR"
 echo "Results Capture: ENABLED (never auto-cleaned)"
 echo ""
 
-# Build clis binary (with lasercli subcommand) for E2E tests with incremental build support
+# Build traxcli binary for E2E tests with incremental build support
 echo "=========================================="
-echo "Building clis (lasercli subcommand) for E2E tests..."
+echo "Building traxcli for E2E tests..."
 echo "=========================================="
 
 # Use TESTS_BIN_DIR if set (for incremental builds), otherwise use /usr/bin/agora
 TESTS_BIN_DIR=${TESTS_BIN_DIR:-/usr/bin/agora}
 mkdir -p "$TESTS_BIN_DIR"
-CLIS_BIN="$TESTS_BIN_DIR/clis"
+CLIS_BIN="$TESTS_BIN_DIR/traxcli"
 
 # Always build clis binary (incremental build check disabled for now)
-echo "Building clis binary..."
-go build -o "$CLIS_BIN" ./cmd/agora/clis
+echo "Building traxcli binary..."
+go build -o "$CLIS_BIN" ./cmd/traxcli
 if [ $? -eq 0 ]; then
-  echo "✓ clis built successfully at $CLIS_BIN"
+  echo "✓ traxcli built successfully at $CLIS_BIN"
 else
-  echo "⚠ Warning: clis build failed (tests may skip lasercli tests)"
+  echo "⚠ Warning: traxcli build failed"
 fi
 
 # Create symlink for backwards compatibility
@@ -144,9 +143,9 @@ if [ "$TESTS_BIN_DIR" != "/usr/bin/agora" ]; then
   ln -sf "$CLIS_BIN" /usr/local/bin/traxcli 2>/dev/null || cp "$CLIS_BIN" /usr/local/bin/traxcli
 fi
 
-# Verify clis works
+# Verify traxcli works
 if [ -f "$CLIS_BIN" ]; then
-  "$CLIS_BIN" lasercli --help > /dev/null 2>&1 && echo "✓ clis lasercli verified working"
+  "$CLIS_BIN" --help > /dev/null 2>&1 && echo "✓ traxcli verified working"
 fi
 echo ""
 

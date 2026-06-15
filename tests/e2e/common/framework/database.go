@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/kamcpp/trax/pkg/common"
 	_ "github.com/lib/pq"
 	"github.com/stretchr/testify/require"
-	"github.com/kamcpp/trax/pkg/common"
 )
 
 // SetupTestDatabase creates an isolated test database with random name
@@ -60,8 +60,8 @@ func SetupTestDatabase(t *testing.T, dbName string) (*sql.DB, string) {
 	return testDB, dbName
 }
 
-// InitializeSchema initializes a specific schema in the test database
-// Supported schemas: "laser", "trax", "accmgr", "instrmgr", "lcmgr"
+// InitializeSchema initializes a specific standalone-TRAX schema in the test database.
+// Supported schemas: "trax", "test_cluster"
 func InitializeSchema(t *testing.T, db *sql.DB, schemaName string) error {
 	t.Helper()
 
@@ -69,25 +69,13 @@ func InitializeSchema(t *testing.T, db *sql.DB, schemaName string) error {
 
 	var sqlPath string
 	switch schemaName {
-	case "laser":
-		// Use the shared implementation
-		return common.InitializeLaserSchema(t, db)
 	case "trax":
 		sqlPath = filepath.Join(projectRoot, "deploy/k8s/init/init_trax_pgsql.sql")
-	case "accmgr":
-		sqlPath = filepath.Join(projectRoot, "deploy/k8s/init/init_accmgr_pgsql.sql")
-	case "instrmgr":
-		sqlPath = filepath.Join(projectRoot, "deploy/k8s/init/init_instrmgr_pgsql.sql")
-	case "lcmgr":
-		sqlPath = filepath.Join(projectRoot, "deploy/k8s/init/init_lcmgr_pgsql.sql")
 	case "test_cluster":
 		// Special case: initialize test cluster for TRAX
 		sqlPath = filepath.Join(projectRoot, "tests/e2e/trax/init_test_cluster.sql")
-	case "fund_account_saga":
-		// Initialize fund_account_with_cash_tokens saga template for E2E tests
-		sqlPath = filepath.Join(projectRoot, "tests/e2e/laser/init_fund_account_saga.sql")
 	default:
-		return fmt.Errorf("unknown schema: %s", schemaName)
+		return fmt.Errorf("unknown standalone TRAX schema: %s", schemaName)
 	}
 
 	common.ExecuteSQLFile(t, db, sqlPath)
