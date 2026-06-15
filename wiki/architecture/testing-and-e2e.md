@@ -17,6 +17,12 @@ The current code requires a modern Go toolchain. A stale shell Go version will f
 
 The standalone E2E suite lives in `tests/e2e/trax` and uses `tests/e2e/common` helpers.
 
+The standalone harness now treats TRAX as self-contained:
+
+- per-test databases are created dynamically;
+- only the base `trax` schema plus the `test_cluster` seed are initialized;
+- saga templates are created through `traxcli` inside the `traxcli-submitter` container instead of by loading non-TRAX domain SQL.
+
 It covers:
 
 - smoke template setup;

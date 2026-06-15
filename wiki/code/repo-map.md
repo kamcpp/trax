@@ -61,4 +61,4 @@ This page maps the current repository layout to runtime responsibility. It is me
 - `deploy/k8s/init/*/min/trax.sql`: inherited domain-specific saga template seed SQL.
 - `deploy/k8s/charts/traxctrl`, `deploy/k8s/charts/traxcoord*`: Kubernetes Helm charts.
 - `tests/e2e/trax`: standalone TRAX compose-backed E2E tests.
-- `tests/e2e/common`: reusable E2E framework and result capture helpers.
+- `tests/e2e/common`: reusable E2E framework and result capture helpers. In standalone TRAX, the active harness initializes only TRAX-owned schema and cluster seed data.

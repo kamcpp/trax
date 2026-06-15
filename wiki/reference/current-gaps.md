@@ -6,10 +6,6 @@ This page lists code/wiki/deployment mismatches found during the documentation s
 
 The daemon API packages import generated Swagger packages under `gen-docs/...`. The current `Makefile` `swagger` target only prints a message. A real generation or committed-doc restoration path is needed.
 
-## Makefile Versus E2E README
-
-`tests/e2e/trax/README.md` documents `make trax-e2e-logs`, but the current `Makefile` does not define that target.
-
 ## Old Agora Paths
 
 `cmd/traxcli` still imports `cmd/agora/clis/traxcli`. This works as an extraction bridge, but the package path should eventually be renamed.

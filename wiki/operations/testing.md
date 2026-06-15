@@ -27,6 +27,15 @@ It uses:
 - `traxcli executor` workers
 - a Go test runner
 
+The standalone TRAX harness initializes only:
+
+- `deploy/k8s/init/init_trax_pgsql.sql`
+- `tests/e2e/trax/init_test_cluster.sql`
+
+It does not depend on LASER, accmgr, instrmgr, or other source-repo domain schemas.
+
+Template setup and saga submission are driven through `traxcli` commands executed inside the `traxcli-submitter` container.
+
 Covered scenarios include:
 
 - smoke template creation and submission;

@@ -39,6 +39,12 @@ Run full E2E:
 make trax-e2e-full
 ```
 
+Inspect live E2E logs:
+
+```bash
+make trax-e2e-logs
+```
+
 Stop stack:
 
 ```bash
@@ -84,5 +90,5 @@ REDIS_ADDRESS='localhost:6379' \
 
 - `traxcoord`: `17201`
 - `traxctrl`: `17202`
-- E2E `traxctrl` host mapping: `17200 -> 17202`
-- E2E coordinators: `17220`, `17221`, `17222` mapped to daemon port `17201`
+
+The standalone E2E compose file does not publish daemon ports to the host. Tests talk over the internal compose network.

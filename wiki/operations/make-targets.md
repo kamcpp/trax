@@ -74,12 +74,11 @@ Serves Docsify on `WIKI_PORT`, default `3334`.
 ```bash
 make trax-e2e-clean
 make trax-e2e-up
+make trax-e2e-logs
 make trax-e2e-down
 make trax-e2e-full
 ```
 
-`trax-e2e-full` runs Docker Compose with `--abort-on-container-exit --exit-code-from test-runner`.
+`trax-e2e-up` starts the dependency stack and waits for health without running the test runner.
 
-## Known Mismatch
-
-`tests/e2e/trax/README.md` mentions `make trax-e2e-logs`, but the current `Makefile` does not define that target.
+`trax-e2e-full` brings the stack up, runs `test-runner` as a one-shot container, then tears the stack down.
