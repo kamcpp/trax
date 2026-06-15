@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package tech.qomet.agora.api.grpc.trax.v1;
+
+option go_package = "github.com/kamcpp/trax/gen-pkg/tech/qomet/agora/api/grpc/trax/v1;agoraapigrpctraxv1";
+option java_package = "tech.qomet.agora.api.grpc.trax.v1";
+option java_outer_classname = "TraxTypes";
+option csharp_namespace  = "Tech.Qomet.Agora.Api.Grpc.Trax.V1";
+
+// Shared TRAX domain types: saga instances, step instances, and the
+// composite shapes used by the saga-watch / saga-list / saga-detail
+// surfaces of every app gateway. Lifted from prtagent/v1/admin.proto
+// so multiple gateways can import them without redeclaring.
+//
+// State enums (`SagaStateEnum`, `SagaStepStateEnum`) remain stringly-typed
+// here to match the existing prtagent/v1 shape; promote to proper
+// proto enums in a later cleanup pass if desired.
+
+message SagaInstance {
+  string instance_id = 1;
+  string cluster_id = 2;
+  string zone_id = 3;
+  string trace_id = 4;
+  string execution_id = 5;
+  string saga_submitter_id = 6;
+  string state = 7;                                                     // SagaStateEnum value (e.g. SAGA_STATE_ENUM_RUNNING)
+  string saga_template_id = 8;
+  string input_data = 9;                                                // JSON-encoded saga input map
+  map<string, string> labels = 10;
+  repeated string tags = 11;
+  string metadata = 12;                                                 // JSON-encoded metadata map
+  repeated string child_saga_instance_ids = 13;                         // Direct child saga ids
+  string saga_idempotency_key = 14;
+  int64  created_at = 15;                                               // Unix millis
+  int64  updated_at = 16;                                               // Unix millis
+
+  // Sub-saga hierarchy
+  string parent_saga_instance_id = 20;                                  // Empty for root sagas
+  string parent_saga_step_instance_id = 21;                             // Step that spawned this sub-saga
+  string root_saga_instance_id = 22;                                    // Root ancestor saga id
+  int32  saga_depth = 23;                                               // 0 = root, 1 = child, 2 = grandchild, etc.
+  string compensation_reason = 24;                                      // Human-readable reason compensation was triggered
+}
+
+message SagaStepExecutionLog {
+  int64  next_execution_ts = 1;                                         // Scheduled execution time (Unix millis)
+  int64  execution_request_sent_ts = 2;                                 // When execution request was sent
+  int64  execution_timeout_ts = 3;                                      // Timeout deadline
+  int64  execution_result_received_ts = 4;                              // When result was received
+  int64  log_conclusion_ts = 5;                                         // When log entry was concluded
+  string execution_result = 6;                                          // JSON-encoded result map
+  string execution_error = 7;                                           // Error message (empty on success)
+  bool   is_compensation = 8;                                           // true if this is a compensation execution
+  string metadata = 9;                                                  // JSON-encoded metadata
+}
+
+message SagaStepInstance {
+  string instance_id = 1;
+  string saga_instance_id = 2;
+  string cluster_id = 3;
+  string zone_id = 4;
+  string trace_id = 5;
+  string execution_id = 6;
+  string state = 7;                                                     // SagaStepStateEnum value
+  string affinity = 8;                                                  // Coordinator affinity group
+  string saga_template_id = 9;
+  string saga_step_template_id = 10;                                    // Step name within the saga
+  string result_data = 11;                                              // JSON-encoded step result map
+  string compensation_result_data = 22;                                 // JSON-encoded compensation result map
+  repeated SagaStepExecutionLog execution_history = 12;                 // Full execution attempt history
+  string execution_error = 13;                                          // First error from execution history
+  map<string, string> labels = 14;
+  repeated string tags = 15;
+  string metadata = 16;                                                 // JSON-encoded metadata
+  string previous_saga_step_instance_id = 17;                           // Linked list: previous step
+  string next_saga_step_instance_id = 18;                               // Linked list: next step
+  string saga_idempotency_key = 19;
+  int64  created_at = 20;                                               // Unix millis
+  int64  updated_at = 21;                                               // Unix millis
+}
+
+message SagaStepSummary {
+  int32 total = 1;
+  int32 completed = 2;
+  int32 pending = 3;
+  int32 failed = 4;
+  map<string, int32> by_state = 5;                                      // Count of steps in each state
+}
+
+// SagaDetail bundles a saga instance with its steps, summary, and (when
+// fetched recursively) any child sagas.
+message SagaDetail {
+  SagaInstance saga = 1;
+  repeated SagaStepInstance steps = 2;                                  // Steps in execution order
+  SagaStepSummary step_summary = 3;
+  repeated SagaDetail child_sagas = 4;                                  // Recursive child saga details
+}
+
+// SagaWatchEvent is a single tick on the WatchSaga server-stream.
+message SagaWatchEvent {
+  SagaDetail saga = 1;                                                  // Current saga snapshot with steps and summary
+  bool   is_terminal = 2;                                               // true when saga has reached a terminal state
+  string terminal_state = 3;                                            // Terminal state value (only set when is_terminal=true)
+
+  map<string, string> metadata = 105;                                   // OPTIONAL: Event metadata
+}
