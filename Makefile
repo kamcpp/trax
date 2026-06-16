@@ -1,4 +1,8 @@
+-include .env.local
+
 REGISTRY ?= xshyft
+DOCKER_USERNAME ?= xshyft
+DOCKER ?= docker
 IMAGE_DAEMONS ?= trax.daemons
 IMAGE_CLIS ?= trax.clis
 TAG ?= latest
@@ -7,7 +11,7 @@ WIKI_DIR ?= wiki
 WIKI_PORT ?= 3334
 WIKI_HTML ?= $(WIKI_DIR)/index.html
 
-.PHONY: build-daemons build-clis test-unit swagger images trax-e2e-up trax-e2e-down trax-e2e-clean trax-e2e-full trax-e2e-logs wiki
+.PHONY: build-daemons build-clis test-unit swagger images docker-login trax-e2e-up trax-e2e-down trax-e2e-clean trax-e2e-full trax-e2e-logs wiki
 
 build-daemons:
 	go build -o ./bin/traxctrl ./cmd/traxctrl
@@ -23,8 +27,14 @@ swagger:
 	@echo "Using committed Swagger docs under gen-docs/traxcoord and gen-docs/traxctrl"
 
 images:
-	docker build -f Dockerfile.daemons -t $(REGISTRY)/$(IMAGE_DAEMONS):$(TAG) .
-	docker build -f Dockerfile.clis -t $(REGISTRY)/$(IMAGE_CLIS):$(TAG) .
+	$(DOCKER) build -f Dockerfile.daemons -t $(REGISTRY)/$(IMAGE_DAEMONS):$(TAG) .
+	$(DOCKER) build -f Dockerfile.clis -t $(REGISTRY)/$(IMAGE_CLIS):$(TAG) .
+
+docker-login:
+	@[ -n "$(DOCKER_CONFIG)" ] || { echo "DOCKER_CONFIG is not set. Put it in .env.local, for example: DOCKER_CONFIG=/absolute/path/to/docker-config"; exit 1; }
+	@mkdir -p "$(DOCKER_CONFIG)"
+	@echo "Logging Docker into Docker Hub as $(DOCKER_USERNAME) using DOCKER_CONFIG=$(DOCKER_CONFIG)"
+	@$(DOCKER) --config "$(DOCKER_CONFIG)" login -u "$(DOCKER_USERNAME)"
 
 wiki: $(WIKI_HTML)
 	@command -v npx >/dev/null 2>&1 || { echo "npx not found — install Node.js: https://nodejs.org"; exit 1; }

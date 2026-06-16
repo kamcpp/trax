@@ -2,6 +2,15 @@
 
 The current `Makefile` exposes these targets.
 
+## Local env
+
+The `Makefile` will load `.env.local` when present. That file is ignored by git and can carry
+machine-local settings such as:
+
+```bash
+DOCKER_CONFIG=/absolute/path/to/docker-config
+```
+
 ## Build
 
 ```bash
@@ -62,6 +71,23 @@ Defaults:
 - `TAG=latest`
 
 The default image names therefore resolve to Docker Hub repositories such as `xshyft/trax.daemons:latest`.
+
+## Docker Login
+
+```bash
+make docker-login
+```
+
+This target requires `DOCKER_CONFIG` to be set, typically through `.env.local`. It will:
+
+- create the `DOCKER_CONFIG` directory when missing
+- run `docker --config "$(DOCKER_CONFIG)" login -u "$(DOCKER_USERNAME)"`
+
+Defaults:
+
+- `DOCKER_USERNAME=$(REGISTRY)`
+
+That means the default login user is also `xshyft` unless you override it locally.
 
 ## Wiki
 

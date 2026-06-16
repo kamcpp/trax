@@ -19,6 +19,7 @@ tmp
 gen-docs
 .vscode
 .env*
+.local/
 .output
 /cli
 /daemons
