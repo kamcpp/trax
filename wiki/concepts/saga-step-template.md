@@ -14,7 +14,7 @@ Store table: `trax.saga_step_templates`
 - `description`: longer explanation.
 - `labels`: JSON object for structured filtering.
 - `tags`: JSON array for loose categorization.
-- `metadata`: JSON object for executor/domain hints.
+- `metadata`: JSON object for executor hints.
 
 ## Runtime Meaning
 

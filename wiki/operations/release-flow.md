@@ -20,9 +20,9 @@ The release flow still keeps the normal branch/hash tags available for non-relea
 
 ## Linux Build Path
 
-`make build-daemons` and `make build-clis` do **not** compile host binaries directly. They run the
-same containerized Go-builder pattern used in the earlier daemons2 setup, write Linux artifacts
-into `bin/`, and then build runtime images from those binaries.
+`make build-daemons` and `make build-clis` do **not** compile host binaries directly. They run a
+containerized Go-builder, write Linux artifacts into `bin/`, and then build runtime images from
+those binaries.
 
 ## Commands
 

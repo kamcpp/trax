@@ -1,6 +1,6 @@
 # Current Gaps And Mismatches
 
-This page lists code/wiki/deployment mismatches found during the documentation sweep.
+This page lists current code, wiki, and deployment mismatches.
 
 ## Build And Generated Docs
 
@@ -8,24 +8,30 @@ The daemon API packages import generated Swagger packages under `gen-docs/...`. 
 
 ## Placeholder Daemon Run Files
 
-`pkg/daemons/traxcoord/run.go` and `pkg/daemons/traxctrl/run.go` are old placeholder consumers and are not the real startup path. They should be removed or clearly deprecated in code after confirming no caller uses them.
+`pkg/daemons/traxcoord/run.go` and `pkg/daemons/traxctrl/run.go` are placeholder consumers and are
+not the real startup path. They should be removed or clearly deprecated in code after confirming no
+caller uses them.
 
 ## Database Naming
 
-The E2E compose file and base init SQL still use `agora_db`. That reflects source repo inheritance. A standalone TRAX database name should be chosen and applied consistently.
+Deployment and E2E assets should consistently use TRAX-owned database names.
 
-## Domain Seed SQL Ownership
+## Example Seed SQL Ownership
 
-`deploy/k8s/init/{csd,exchange,prtagent,tldinfra}/min/trax.sql` contains real domain saga templates. These are useful examples, but they likely belong in dependent systems long term.
+`deploy/k8s/init/{csd,exchange,prtagent,tldinfra}/min/trax.sql` should remain generic enough for
+TRAX examples. Business-specific saga templates belong in dependent systems.
 
 ## Toolchain
 
-The codebase requires modern Go. During extraction, the active shell Go was observed as too old to compile dependencies. The wiki now documents this, but the repo should enforce/toolchain-document it explicitly.
+The codebase requires modern Go. The repo should enforce and document the minimum supported
+toolchain explicitly.
 
 ## Common Package Breadth
 
-`pkg/common` still contains helpers for many source-system services. It should be reduced or split once TRAX standalone boundaries settle.
+`pkg/common` should stay limited to helpers required by TRAX. Any unrelated helpers should be
+removed or moved out of this repository.
 
 ## Fail-fast Audit
 
-Most required daemon config panics when missing. One inherited helper, `common.GetTraxClusterId`, appears to contain fallback behavior and should be audited against the fail-fast rule if used in active TRAX paths.
+Most required daemon config panics when missing. `common.GetTraxClusterId` appears to contain
+fallback behavior and should be audited against the fail-fast rule if used in active TRAX paths.

@@ -11,7 +11,8 @@ Core packages with tests include:
 - `pkg/common`
 - `pkg/cache`
 
-The extracted repo currently requires a modern Go toolchain. During extraction, the active shell reported Go 1.17, which is too old for dependencies that use packages such as `cmp`, `slices`, `maps`, `log/slog`, and `crypto/ecdh`.
+TRAX requires a modern Go toolchain. Older Go versions fail before meaningful TRAX verification
+because dependencies use packages such as `cmp`, `slices`, `maps`, `log/slog`, and `crypto/ecdh`.
 
 ## TRAX E2E Suite
 
@@ -32,7 +33,7 @@ The standalone TRAX harness initializes only:
 - `deploy/k8s/init/init_trax_pgsql.sql`
 - `tests/e2e/trax/init_test_cluster.sql`
 
-It does not depend on LASER, accmgr, instrmgr, or other source-repo domain schemas.
+It does not depend on non-TRAX schemas or business services.
 
 Template setup and saga submission are driven through `traxcli` commands executed inside the `traxcli-submitter` container.
 
@@ -48,7 +49,7 @@ Covered scenarios include:
 
 ## Test Isolation
 
-The imported E2E harness includes support for:
+The E2E harness includes support for:
 
 - per-run environment management;
 - RabbitMQ readiness checks;
@@ -64,16 +65,8 @@ Testing-only endpoints exist for database switching:
 
 These are test/admin affordances and must remain gated outside normal production operation.
 
-## Imported E2E Documentation
+## Coverage Direction
 
-The old `daemons2` docs imported into `docs/imported-daemons2/` include broader E2E material:
-
-- `E2E_TEST_CATALOG.md`
-- `E2E_TEST_COVERAGE_ANALYSIS.md`
-- `E2E_TEST_RESULTS_CAPTURE_TODO.md`
-- `TODO_MULTI_NAMESPACE_E2E_COMPOSE.md`
-- `TODO_ORDER_E2E_3NS_INFRA.md`
-- `LASER_E2E_TESTS_TODO.md`
-- `LASER_EXTERNAL_CALL_E2E_TODO.md`
-
-Those describe larger Agora/LASER test matrices. Keep them as historical/context material while extracting reusable TRAX-only coverage.
+TRAX E2E should cover the distributed workflow runtime directly: routing, retries, idempotency,
+compensation, sub-saga hierarchy, result capture, and operator inspection. Business-specific test
+matrices belong outside this repository.

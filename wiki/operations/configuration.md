@@ -41,7 +41,7 @@ RabbitMQ init loops until connection and queue initialization succeed. On connec
 
 ## Logging/Common
 
-Inherited common logger configuration includes:
+Common logger configuration includes:
 
 - `MODE`
 - `LOG_LEVEL`
@@ -51,4 +51,5 @@ Inherited common logger configuration includes:
 
 ## Known Problem
 
-`pkg/common.GetTraxClusterId()` still has fallback-like behavior from the source repo. This should be reviewed against the fail-fast rule if that helper is used in active TRAX paths.
+`pkg/common.GetTraxClusterId()` appears to contain fallback-like behavior. This should be reviewed
+against the fail-fast rule if that helper is used in active TRAX paths.

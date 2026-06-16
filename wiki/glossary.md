@@ -25,4 +25,3 @@
 - **Notification**: PostgreSQL wakeup event on `trax_saga_events` or `trax_template_events`. See [Notifications](concepts/notifications.md).
 - **Template hot reload**: coordinator reload of template changes without restart. See [Template Hot Reload](concepts/template-hot-reload.md).
 - **Saga annex**: binary attachment owned by a saga instance and stored in TRAX. See [Saga Annex](concepts/saga-annex.md).
-- **Imported daemons2 docs**: copied source-system docs under `docs/imported-daemons2/` that preserve old TRAX, saga, E2E, RabbitMQ, and domain workflow knowledge.

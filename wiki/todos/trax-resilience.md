@@ -1,8 +1,6 @@
 # TRAX Resilience TODO
 
-This page tracks the TRAX-owned part of the imported backlog from `docs/TODO_TRAX_RESILIENCE_TEMPLATE_HOTRELOAD_IDEMPOTENCY.md`.
-
-The imported source document is preserved verbatim, but it predates the standalone repo state. This page is the current status summary.
+This page tracks resilience work owned by TRAX.
 
 ## Implemented Or Substantially Present
 
@@ -20,16 +18,16 @@ The imported source document is preserved verbatim, but it predates the standalo
 
 - Run the full standalone unit suite with a modern Go toolchain and record results.
 - Run standalone compose-backed TRAX E2E and record results.
-- Verify all imported resilience checklist items against code and tests, then split stale historical material from live backlog.
+- Audit the current resilience behavior against [Core Requirements](../reference/core-requirements.md).
 - Add generated Swagger docs to the standard build path so image builds do not fail on missing `gen-docs` packages.
 - Tighten testing endpoint gating and document the exact enabling env vars.
-- Review RabbitMQ reliability docs and port still-relevant fixes into TRAX-only TODOs.
-- Normalize deployment/test naming that still assumes the old `agora_db` source environment.
-- Decide where domain seed SQL belongs long term: TRAX examples or dependent repos.
+- Add targeted RabbitMQ reconnect, duplicate-delivery, and stale-consumer tests where coverage is thin.
+- Normalize deployment/test naming to TRAX-owned database and service names.
+- Keep example templates generic and move any business-specific examples out of TRAX.
 
 ## Related Wiki Pages
 
 - [Architecture v1](../architecture/v1.md)
 - [Template Management and Hot Reload](../flows/template-management.md)
 - [Testing and E2E Operations](../operations/testing.md)
-- [Imported daemons2 Backlog](imported-daemons2-backlog.md)
+- [Core Requirements](../reference/core-requirements.md)

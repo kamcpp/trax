@@ -34,7 +34,7 @@ Template changes emit `trax_template_events` so coordinators can reload queue bi
 
 ## Boundary
 
-TRAX owns the template mechanism. Domain systems should own the domain-specific templates long term.
+TRAX owns the template mechanism. Dependent systems should own business-specific templates long term.
 
 ## Related Concepts
 

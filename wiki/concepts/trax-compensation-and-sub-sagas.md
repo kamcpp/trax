@@ -32,13 +32,15 @@ Sub-saga-enabled executors can detach long-running execution from the MQ callbac
 
 ## Why This Matters
 
-The imported `daemons2` domain workflows include deep multi-step and nested saga designs. TRAX must preserve those mechanics while keeping the domain-specific templates and executors outside TRAX core long term.
+Deep workflows often need nested child workflows, delayed completion, rollback, and manual
+intervention points. TRAX owns those mechanics generically while dependent systems own the business
+templates and executor code.
 
 ## See Also
 
 - [Sub-sagas and Hierarchy](../flows/sub-sagas.md)
 - [Saga Lifecycle](../flows/saga-lifecycle.md)
-- [Imported daemons2 Docs](../reference/imported-daemons2-docs.md)
+- [Core Requirements](../reference/core-requirements.md)
 
 ## Related Concepts
 

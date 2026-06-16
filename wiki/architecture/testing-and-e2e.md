@@ -21,7 +21,8 @@ The standalone harness now treats TRAX as self-contained:
 
 - per-test databases are created dynamically;
 - only the base `trax` schema plus the `test_cluster` seed are initialized;
-- saga templates are created through `traxcli` inside the `traxcli-submitter` container instead of by loading non-TRAX domain SQL.
+- saga templates are created through `traxcli` inside the `traxcli-submitter` container instead of
+  by loading non-TRAX SQL.
 
 It covers:
 
@@ -34,9 +35,5 @@ It covers:
 - hierarchy queries.
 
 The compose environment includes PostgreSQL, RabbitMQ, Redis, `traxctrl`, multiple `traxcoord` instances, executor workers, and a test runner.
-
-## Imported Source Test Docs
-
-Many broader test docs from `daemons2` are now copied under `docs/imported-daemons2/`. They contain valuable old coverage analysis and real-world workflow examples, but not all of them are standalone TRAX requirements.
 
 See [Testing and E2E Operations](../operations/testing.md) for commands and operational notes.

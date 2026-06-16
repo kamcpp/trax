@@ -62,7 +62,7 @@ make trax-e2e-clean
 With PostgreSQL:
 
 ```bash
-POSTGRESQL_CONN_STRING='postgres://postgres:postgres@localhost:5432/agora_db?sslmode=disable' \
+POSTGRESQL_CONN_STRING='postgres://postgres:postgres@localhost:5432/trax?sslmode=disable' \
 RABBITMQ_CONN_STRING='amqp://guest:guest@localhost:5672/' \
 REDIS_ADDRESS='localhost:6379' \
 ./bin/traxctrl
@@ -80,7 +80,7 @@ REDIS_ADDRESS='localhost:6379' \
 
 ```bash
 TRAX_COORDINATOR_AFFINITY_GROUP=1 \
-POSTGRESQL_CONN_STRING='postgres://postgres:postgres@localhost:5432/agora_db?sslmode=disable' \
+POSTGRESQL_CONN_STRING='postgres://postgres:postgres@localhost:5432/trax?sslmode=disable' \
 RABBITMQ_CONN_STRING='amqp://guest:guest@localhost:5672/' \
 REDIS_ADDRESS='localhost:6379' \
 ./bin/traxcoord

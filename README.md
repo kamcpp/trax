@@ -1,6 +1,6 @@
 # TRAX
 
-TRAX is a standalone distributed workflow and saga orchestration system extracted from `daemons2`.
+TRAX is a standalone distributed workflow and saga orchestration system.
 
 It owns:
 
@@ -20,7 +20,6 @@ This repository is now the canonical home for TRAX. Other systems should depend 
 - Data model: `wiki/data-model/postgresql.md`
 - Runtime flow: `wiki/flows/saga-lifecycle.md`
 - API surface: `wiki/reference/api-surface.md`
-- Imported source docs: `docs/imported-daemons2/`
 - TRAX E2E tests: `tests/e2e/trax/README.md`
 
 ## Current Runtime Shape
@@ -31,12 +30,6 @@ This repository is now the canonical home for TRAX. Other systems should depend 
 - PostgreSQL: durable state authority.
 - RabbitMQ: execution transport.
 - Redis/cache: distributed mutex support.
-
-## Imported daemons2 Material
-
-The first extraction missed many source docs that explain TRAX's production history and important workflows. Those are now copied under `docs/imported-daemons2/` and indexed from the wiki.
-
-The imported docs include both reusable TRAX concepts and old Agora/LASER/treasury domain saga designs. The wiki distinguishes the reusable TRAX core from domain-specific migration material.
 
 ## Local Wiki
 

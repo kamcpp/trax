@@ -49,9 +49,10 @@ When new step templates appear, the coordinator initializes the executor inbox q
 
 When a template is deleted, the coordinator unmarks initialized steps for that template so recreated templates can reinitialize cleanly.
 
-## Current Status Versus Imported TODO
+## Current Status
 
-The imported `TODO_TRAX_RESILIENCE_TEMPLATE_HOTRELOAD_IDEMPOTENCY.md` described template CRUD, multi-channel LISTEN, coordinator notification fanout, MQ health checks, and submitter backoff as planned work. In the standalone repo, these are already substantially implemented:
+Template CRUD, multi-channel `LISTEN`, coordinator notification fanout, MQ health checks, and
+submitter backoff are substantially implemented:
 
 - store interface has update/delete template methods;
 - PostgreSQL store emits `trax_template_events`;
@@ -62,4 +63,4 @@ The imported `TODO_TRAX_RESILIENCE_TEMPLATE_HOTRELOAD_IDEMPOTENCY.md` described 
 - coordinator readiness includes MQ health;
 - submitter announcement has exponential backoff.
 
-Remaining work is tracked in [Imported Backlog](../todos/imported-daemons2-backlog.md), because some verification, docs, and E2E coverage still need cleanup after extraction.
+Remaining work is tracked in [TRAX Resilience TODO](../todos/trax-resilience.md).

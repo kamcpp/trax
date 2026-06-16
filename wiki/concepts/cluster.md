@@ -37,7 +37,8 @@ x_{cluster_id}_trax_saga_steps
 
 ## Current Open Design Note
 
-Some inherited code has TODO comments around mapping participants or domains to clusters. That is a dependent-system design decision; TRAX itself treats clusters as opaque execution namespaces.
+Mapping business entities to clusters is a dependent-system design decision. TRAX itself treats
+clusters as opaque execution namespaces.
 
 ## Related Concepts
 

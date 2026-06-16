@@ -29,8 +29,8 @@ This page maps the current repository layout to runtime responsibility. It is me
 
 - `pkg/daemons/traxcoord.go`: real coordinator daemon startup: env checks, store, MQ, cache, LISTEN channels, Gin routes, port `17201`.
 - `pkg/daemons/traxctrl.go`: real control daemon startup: store, MQ/cache init, Gin routes, port `17202`.
-- `pkg/daemons/traxcoord/run.go`: inherited placeholder consumer path from `daemons2`; not the main binary path.
-- `pkg/daemons/traxctrl/run.go`: inherited placeholder consumer path from `daemons2`; not the main binary path.
+- `pkg/daemons/traxcoord/run.go`: placeholder consumer path; not the main binary path.
+- `pkg/daemons/traxctrl/run.go`: placeholder consumer path; not the main binary path.
 - `pkg/daemons/traxcoord/api/v1`: coordinator HTTP handlers.
 - `pkg/daemons/traxctrl/api/v1`: control HTTP handlers.
 
@@ -39,7 +39,7 @@ This page maps the current repository layout to runtime responsibility. It is me
 - `cmd/traxcli/cmd`: Cobra command package used by `cmd/traxcli`.
 - `pkg/clis/traxcli/main.go`: interactive/direct API CLI implementation.
 - `pkg/clis/traxcli/executor.go`: executor command runtime and simulation/shell idempotent service.
-- `pkg/clis/traxcli/EXECUTOR.md`: executor usage notes inherited from source repo.
+- `pkg/clis/traxcli/EXECUTOR.md`: executor usage notes.
 
 ## Infrastructure Packages
 
@@ -47,18 +47,19 @@ This page maps the current repository layout to runtime responsibility. It is me
 - `pkg/mq/common`: RabbitMQ helpers, publisher, channel pool, errors.
 - `pkg/mq/trax`: TRAX-specific incoming saga exchange helpers.
 - `pkg/cache`: Redis/in-memory locking and cache abstraction.
-- `pkg/common`: inherited common helpers, logger, middleware, query helpers, random IDs, DB retry, and test helpers.
-- `pkg/execpl`: inherited execution-pipeline message enums and envelope/value helpers.
+- `pkg/common`: common helpers, logger, middleware, query helpers, random IDs, DB retry, and test helpers.
+- `pkg/execpl`: execution-pipeline message enums and envelope/value helpers.
 
 ## API And Proto
 
-- `data/api/grpc/trax/v1/types.proto`: proto data definitions copied from source. Current daemon APIs are HTTP/Gin, not generated from this proto in the active code path.
+- `data/api/grpc/trax/v1/types.proto`: proto data definitions. Current daemon APIs are HTTP/Gin,
+  not generated from this proto in the active code path.
 - `gen-docs/...`: expected generated Swagger packages for daemon build imports. If missing, image/build fails.
 
 ## Deployment And Tests
 
 - `deploy/k8s/init/init_trax_pgsql.sql`: base TRAX schema setup for templates and clusters.
-- `deploy/k8s/init/*/min/trax.sql`: inherited domain-specific saga template seed SQL.
+- `deploy/k8s/init/*/min/trax.sql`: saga template seed SQL; keep examples TRAX-generic.
 - `deploy/k8s/charts/traxctrl`, `deploy/k8s/charts/traxcoord*`: Kubernetes Helm charts.
 - `tests/e2e/trax`: standalone TRAX compose-backed E2E tests.
 - `tests/e2e/common`: reusable E2E framework and result capture helpers. In standalone TRAX, the active harness initializes only TRAX-owned schema and cluster seed data.

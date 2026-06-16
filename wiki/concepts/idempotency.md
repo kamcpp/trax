@@ -17,9 +17,11 @@ Store methods named `Save*Idempotently` use those keys to make repeated creation
 
 Executors receive the step idempotency key. The `IdempotentService` implementation is responsible for using it when calling downstream systems.
 
-## Source-system Lessons
+## Side-Effect Boundary
 
-Imported docs include `TODO_EXECUTION_IDEMPOTENCY_SEED.md`, `TODO_IDEMPOTENT_TREASURY_VAULT_OPERATIONS.md`, and `TREASURY_IDEMPOTENCY.md`. Those are domain-heavy, but they capture an important TRAX rule: deterministic operation identity must enter at the boundary and flow into every side-effecting step.
+Deterministic operation identity must enter at the workflow boundary and flow into every
+side-effecting step. Executors should pass the step idempotency key, or a deterministic derivative
+of it, to downstream systems that can be retried.
 
 ## Related Concepts
 

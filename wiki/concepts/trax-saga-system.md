@@ -35,7 +35,9 @@ Executors also receive idempotency keys so step implementations can protect down
 
 ## Scope Boundary
 
-TRAX should remain domain-neutral. Source-system docs imported from `daemons2` include rich Agora/LASER/treasury workflows. Those are examples and migration context. The TRAX core should own the reusable workflow engine, not every domain saga.
+TRAX is business-neutral. It owns the reusable workflow engine, not business-specific saga
+definitions. Dependent systems should provide their own templates, payload schemas, and executor
+implementations.
 
 ## See Also
 

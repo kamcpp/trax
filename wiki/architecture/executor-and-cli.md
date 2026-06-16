@@ -4,7 +4,8 @@ This page describes the current `traxcli` executor runtime and CLI responsibilit
 
 ## CLI Entrypoint
 
-`cmd/traxcli/main.go` calls `cmd/traxcli/cmd.NewTraxCli()`. The Cobra command package now lives alongside the `traxcli` entrypoint instead of under the old extraction-era command tree.
+`cmd/traxcli/main.go` calls `cmd/traxcli/cmd.NewTraxCli()`. The Cobra command package lives
+alongside the `traxcli` entrypoint.
 
 ## Executor Config
 

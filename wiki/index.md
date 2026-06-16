@@ -1,10 +1,12 @@
 # TRAX Wiki Index
 
-TRAX is a standalone distributed workflow and saga orchestration system extracted from `daemons2`. This wiki is the source of truth for the current standalone repo: what the code does now, which imported source docs matter, and what remains to clean up.
+TRAX is a standalone distributed workflow and saga orchestration system. This wiki is the source of
+truth for the current repo: what the code does now, how the runtime behaves, and what remains to
+clean up.
 
 ## Start Here
 
-- [Architecture v1](architecture/v1.md): current runtime architecture, boundaries, actors, routing, and extraction gaps.
+- [Architecture v1](architecture/v1.md): current runtime architecture, boundaries, actors, routing, and gaps.
 - [TRAX Saga System](concepts/trax-saga-system.md): core concepts and ownership boundary.
 - [Saga Lifecycle](flows/saga-lifecycle.md): forward execution, compensation, states, and executor contract.
 - [PostgreSQL Data Model](data-model/postgresql.md): durable tables, generated cluster tables, idempotency keys, and notifications.
@@ -63,19 +65,16 @@ TRAX is a standalone distributed workflow and saga orchestration system extracte
 
 - [API Surface](reference/api-surface.md)
 - [Current Gaps And Mismatches](reference/current-gaps.md)
-- [Extracted Source Knowledge](reference/imported-daemons2-docs.md)
-- [Source Repo History Docs](source/daemons2/index.md)
+- [Core Requirements](reference/core-requirements.md)
 - [Glossary](glossary.md)
 
 ## TODOs
 
 - [TRAX Resilience TODO](todos/trax-resilience.md)
-- [Imported Source Backlog](todos/imported-daemons2-backlog.md)
 
 ## Current Direction
 
 - PostgreSQL is the source of truth; RabbitMQ is the transport.
 - `traxcoord` advances workflows; `traxctrl` is the read/control plane.
-- Domain-specific saga templates and executors should live in dependent systems long term.
-- Imported `daemons2` docs are preserved for historical and migration context.
+- Business-specific saga templates and executors should live in dependent systems long term.
 - The wiki should be updated whenever code, runtime behavior, or architecture changes.

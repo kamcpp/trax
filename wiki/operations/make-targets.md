@@ -30,9 +30,8 @@ Builds the Linux CLI binary through the containerized Go builder flow and writes
 
 - `bin/traxcli`
 
-The binary build flow mirrors the older daemons2 pattern: a Linux Go builder container runs
-against the checked-out repo and writes artifacts into `bin/`. The host OS does not compile the
-release binaries directly.
+The binary build flow uses a Linux Go builder container against the checked-out repo and writes
+artifacts into `bin/`. The host OS does not compile the release binaries directly.
 
 Defaults:
 
@@ -52,7 +51,8 @@ Runs:
 go test ./pkg/trax/...
 ```
 
-This is narrower than the full repo. A broader test target should be added after extraction cleanup.
+This is narrower than the full repo. A broader test target should be added when the package test
+surface is ready.
 
 ## Swagger
 

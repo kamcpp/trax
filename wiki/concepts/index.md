@@ -1,6 +1,6 @@
 # Concepts Index
 
-TRAX has a real domain model. This index lists the first-class concepts that should be understood before changing runtime behavior.
+TRAX has a real concept model. This index lists the first-class concepts that should be understood before changing runtime behavior.
 
 ## Workflow Definition
 

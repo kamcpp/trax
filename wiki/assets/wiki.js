@@ -1,4 +1,4 @@
-/* SoulForge wiki — Docsify config + plugins. Browser-only: never modifies the .md sources.
+/* TRAX wiki — Docsify config + plugins. Browser-only: never modifies the .md sources.
  * - resolves [[wikilinks]] and [[slug|alias]] to real links
  * - strips YAML frontmatter, surfacing `related:` as a clickable footer
  * - renders ```mermaid``` code fences to diagrams, with per-diagram source toggle + SVG/PNG export
@@ -28,7 +28,7 @@
   var SF_TRAIL_KEY = "sf_wiki_nav_trail_v1";
 
   window.$docsify = {
-    name: "SoulForge Wiki",
+    name: "TRAX Wiki",
     homepage: "index.md",
     relativePath: true,
     subMaxLevel: 3,
