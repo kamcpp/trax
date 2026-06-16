@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 func convertSagaTemplateToResponse(c *gin.Context, sagaTemplate *trax.SagaTemplate) (*sagaTemplateResponse, error) {

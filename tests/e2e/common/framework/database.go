@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/common"
 	_ "github.com/lib/pq"
 	"github.com/stretchr/testify/require"
 )

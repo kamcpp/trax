@@ -3,7 +3,7 @@ package traxcoord
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/kamcpp/trax/pkg/daemons"
+	"github.com/xshyft/trax/pkg/daemons"
 )
 
 func NewTraxCoordinatorCommand() *cobra.Command {

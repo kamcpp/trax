@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/execpl"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/execpl"
 )
 
 type SagaStepExecutor interface {

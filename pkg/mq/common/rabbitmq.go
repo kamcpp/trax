@@ -6,7 +6,7 @@ import (
 	amqp "github.com/rabbitmq/amqp091-go"
 	"go.uber.org/zap"
 
-	agoracommon "github.com/kamcpp/trax/pkg/common"
+	agoracommon "github.com/xshyft/trax/pkg/common"
 )
 
 var (

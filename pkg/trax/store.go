@@ -3,7 +3,7 @@ package trax
 import (
 	"context"
 
-	"github.com/kamcpp/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/common"
 )
 
 // StoreNotification represents a notification from the database

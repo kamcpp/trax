@@ -3,7 +3,7 @@ package traxcli
 import (
 	"github.com/spf13/cobra"
 
-	cli "github.com/kamcpp/trax/pkg/clis"
+	cli "github.com/xshyft/trax/pkg/clis"
 )
 
 func NewTraxCli() *cobra.Command {

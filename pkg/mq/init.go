@@ -9,9 +9,9 @@ import (
 
 	amqp "github.com/rabbitmq/amqp091-go"
 
-	"github.com/kamcpp/trax/pkg/common"
-	mqcommon "github.com/kamcpp/trax/pkg/mq/common"
-	mqtrax "github.com/kamcpp/trax/pkg/mq/trax"
+	"github.com/xshyft/trax/pkg/common"
+	mqcommon "github.com/xshyft/trax/pkg/mq/common"
+	mqtrax "github.com/xshyft/trax/pkg/mq/trax"
 )
 
 func initQueues(ctx context.Context) error {

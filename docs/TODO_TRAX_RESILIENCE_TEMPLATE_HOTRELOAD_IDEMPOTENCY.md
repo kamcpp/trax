@@ -109,7 +109,7 @@ func (c *defaultSagaCoordinator) isMQHealthy() bool {
 }
 ```
 
-The import `mqcommon "github.com/kamcpp/trax/pkg/mq/common"` already exists at line 17.
+The import `mqcommon "github.com/xshyft/trax/pkg/mq/common"` already exists at line 17.
 
 - [ ] 1.1.1 Add `isMQHealthy()` method to `defaultSagaCoordinator`
 - [ ] 1.1.2 Update `IsReady()` to: `return c.isRunning && c.isDatabaseHealthy() && c.isMQHealthy()`

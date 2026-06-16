@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/trax"
-	"github.com/kamcpp/trax/tests/e2e/common/framework"
+	"github.com/xshyft/trax/pkg/trax"
+	"github.com/xshyft/trax/tests/e2e/common/framework"
 	"github.com/stretchr/testify/require"
 )
 

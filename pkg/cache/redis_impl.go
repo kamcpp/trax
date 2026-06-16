@@ -8,7 +8,7 @@ import (
 
 	"github.com/redis/go-redis/v9"
 
-	"github.com/kamcpp/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/common"
 )
 
 var (

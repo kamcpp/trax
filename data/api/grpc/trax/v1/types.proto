@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package tech.qomet.agora.api.grpc.trax.v1;
 
-option go_package = "github.com/kamcpp/trax/gen-pkg/tech/qomet/agora/api/grpc/trax/v1;agoraapigrpctraxv1";
+option go_package = "github.com/xshyft/trax/gen-pkg/tech/qomet/agora/api/grpc/trax/v1;agoraapigrpctraxv1";
 option java_package = "tech.qomet.agora.api.grpc.trax.v1";
 option java_outer_classname = "TraxTypes";
 option csharp_namespace  = "Tech.Qomet.Agora.Api.Grpc.Trax.V1";

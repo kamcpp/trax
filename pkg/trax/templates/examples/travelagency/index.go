@@ -3,7 +3,7 @@ package travelagency
 import (
 	"context"
 
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 func CreateSagaTemplates(ctx context.Context, store trax.Store) error {

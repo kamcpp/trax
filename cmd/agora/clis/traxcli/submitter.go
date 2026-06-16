@@ -11,10 +11,10 @@ import (
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 
-	"github.com/kamcpp/trax/pkg/cache"
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/mq"
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/cache"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/mq"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 func newSubmitterCommand(traceId *string) *cobra.Command {

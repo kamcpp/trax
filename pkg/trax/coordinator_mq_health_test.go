@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	mqcommon "github.com/kamcpp/trax/pkg/mq/common"
+	mqcommon "github.com/xshyft/trax/pkg/mq/common"
 	"github.com/stretchr/testify/require"
 )
 

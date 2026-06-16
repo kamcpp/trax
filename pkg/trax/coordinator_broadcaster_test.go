@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/common"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
 )

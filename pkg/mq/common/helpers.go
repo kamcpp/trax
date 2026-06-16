@@ -10,7 +10,7 @@ import (
 
 	amqp "github.com/rabbitmq/amqp091-go"
 
-	"github.com/kamcpp/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/common"
 )
 
 // MaxMessageRetries is the maximum number of times a message will be retried before being sent to DLQ

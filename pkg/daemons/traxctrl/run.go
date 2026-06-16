@@ -3,7 +3,7 @@ package traxctrl
 import (
 	"context"
 
-	mqtrax "github.com/kamcpp/trax/pkg/mq/trax"
+	mqtrax "github.com/xshyft/trax/pkg/mq/trax"
 )
 
 func RunCtrl(ctx context.Context) {

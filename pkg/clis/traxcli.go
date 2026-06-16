@@ -1,7 +1,7 @@
 package cli
 
 import (
-	"github.com/kamcpp/trax/pkg/clis/traxcli"
+	"github.com/xshyft/trax/pkg/clis/traxcli"
 )
 
 // RunTraxCliWithTraceId starts the interactive trax CLI with optional trace ID

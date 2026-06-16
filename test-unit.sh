@@ -23,7 +23,7 @@ TIMEOUT="60s"
 while [[ $# -gt 0 ]]; do
   case $1 in
     --all)
-      PACKAGES=("github.com/kamcpp/trax/pkg/...")
+      PACKAGES=("github.com/xshyft/trax/pkg/...")
       shift
       ;;
     --run)
@@ -59,7 +59,7 @@ done
 
 # Default: run all unit tests (exclude tests/e2e)
 if [ ${#PACKAGES[@]} -eq 0 ]; then
-  PACKAGES=("github.com/kamcpp/trax/pkg/...")
+  PACKAGES=("github.com/xshyft/trax/pkg/...")
 fi
 
 # Build test flags

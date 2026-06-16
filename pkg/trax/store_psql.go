@@ -12,7 +12,7 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/kamcpp/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/common"
 	"github.com/lib/pq"
 )
 

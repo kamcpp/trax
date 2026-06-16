@@ -3,7 +3,7 @@ package traxcli
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/kamcpp/trax/pkg/clis/traxcli"
+	"github.com/xshyft/trax/pkg/clis/traxcli"
 )
 
 func newExecutorCommand(traceId *string) *cobra.Command {

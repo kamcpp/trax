@@ -11,11 +11,11 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/kamcpp/trax/pkg/cache"
-	"github.com/kamcpp/trax/pkg/common"
-	apiv1 "github.com/kamcpp/trax/pkg/daemons/traxcoord/api/v1"
-	"github.com/kamcpp/trax/pkg/mq"
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/cache"
+	"github.com/xshyft/trax/pkg/common"
+	apiv1 "github.com/xshyft/trax/pkg/daemons/traxcoord/api/v1"
+	"github.com/xshyft/trax/pkg/mq"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 func RunTraxCoordinator() {

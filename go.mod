@@ -1,4 +1,4 @@
-module github.com/kamcpp/trax
+module github.com/xshyft/trax
 
 go 1.24.0
 

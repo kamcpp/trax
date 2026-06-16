@@ -133,7 +133,7 @@ func hasProjectRootMarkers(dir string) bool {
 	// Look for go.mod file with the expected module path
 	goModPath := filepath.Join(dir, "go.mod")
 	if content, err := os.ReadFile(goModPath); err == nil {
-		if strings.Contains(string(content), "github.com/kamcpp/trax") {
+		if strings.Contains(string(content), "github.com/xshyft/trax") {
 			return true
 		}
 	}

@@ -3,7 +3,7 @@ package traxcoord
 import (
 	"context"
 
-	mqtrax "github.com/kamcpp/trax/pkg/mq/trax"
+	mqtrax "github.com/xshyft/trax/pkg/mq/trax"
 )
 
 func RunCoordinator(ctx context.Context) {

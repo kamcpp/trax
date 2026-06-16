@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/common"
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 

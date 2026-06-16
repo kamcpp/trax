@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/kamcpp/trax/tests/e2e/common/testresults"
+	"github.com/xshyft/trax/tests/e2e/common/testresults"
 )
 
 // setupTestResultsCapture initializes test results tracking for a test

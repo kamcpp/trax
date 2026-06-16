@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kamcpp/trax/pkg/daemons"
+import "github.com/xshyft/trax/pkg/daemons"
 
 func main() {
 	daemons.RunTraxCoordinator()

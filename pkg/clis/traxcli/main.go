@@ -17,9 +17,9 @@ import (
 
 	"github.com/chzyer/readline"
 
-	"github.com/kamcpp/trax/pkg/cache"
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/mq"
+	"github.com/xshyft/trax/pkg/cache"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/mq"
 )
 
 const (

@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 // listSagaInstancesAllowlist is the per-table contract consulted by this

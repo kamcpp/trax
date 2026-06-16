@@ -58,7 +58,7 @@ TIMEOUT="300s"
 while [[ $# -gt 0 ]]; do
   case $1 in
     --all)
-      PACKAGES=("github.com/kamcpp/trax/pkg/...")
+      PACKAGES=("github.com/xshyft/trax/pkg/...")
       shift
       ;;
     --run)
@@ -95,7 +95,7 @@ done
 # Default package: TRAX E2E suite
 if [ ${#PACKAGES[@]} -eq 0 ]; then
   PACKAGES=(
-    "github.com/kamcpp/trax/tests/e2e/trax/..."
+    "github.com/xshyft/trax/tests/e2e/trax/..."
   )
 fi
 

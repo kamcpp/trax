@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/trax/watch"
+	"github.com/xshyft/trax/pkg/trax/watch"
 )
 
 const (

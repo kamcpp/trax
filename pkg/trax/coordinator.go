@@ -11,10 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/cache"
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/execpl"
-	mqcommon "github.com/kamcpp/trax/pkg/mq/common"
+	"github.com/xshyft/trax/pkg/cache"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/execpl"
+	mqcommon "github.com/xshyft/trax/pkg/mq/common"
 	"go.uber.org/zap"
 )
 

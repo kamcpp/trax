@@ -11,11 +11,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/cache"
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/mq"
-	mqcommon "github.com/kamcpp/trax/pkg/mq/common"
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/cache"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/mq"
+	mqcommon "github.com/xshyft/trax/pkg/mq/common"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 type ExecutorConfig struct {

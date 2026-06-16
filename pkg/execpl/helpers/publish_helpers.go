@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/execds"
-	"github.com/kamcpp/trax/pkg/execpl"
-	exchangemodel "github.com/kamcpp/trax/pkg/marketds/model/exchange"
-	mqexchange "github.com/kamcpp/trax/pkg/mq/exchange"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/execds"
+	"github.com/xshyft/trax/pkg/execpl"
+	exchangemodel "github.com/xshyft/trax/pkg/marketds/model/exchange"
+	mqexchange "github.com/xshyft/trax/pkg/mq/exchange"
 )
 
 func PublishCommandEvent(ctx context.Context, command *execpl.Command, commandEventStatus string) error {

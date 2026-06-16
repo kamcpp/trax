@@ -8,8 +8,8 @@ import (
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	docs "github.com/kamcpp/trax/gen-docs/traxctrl/v1"
-	"github.com/kamcpp/trax/pkg/trax"
+	docs "github.com/xshyft/trax/gen-docs/traxctrl/v1"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 const (

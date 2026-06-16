@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kamcpp/trax/tests/e2e/common/testresults"
+	"github.com/xshyft/trax/tests/e2e/common/testresults"
 )
 
 // E2EEnvironment manages test lifecycle automatically

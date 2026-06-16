@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 type BookTravelParams struct {

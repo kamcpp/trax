@@ -3,7 +3,7 @@ package mqtrax
 import (
 	"context"
 
-	mqcommon "github.com/kamcpp/trax/pkg/mq/common"
+	mqcommon "github.com/xshyft/trax/pkg/mq/common"
 )
 
 const (

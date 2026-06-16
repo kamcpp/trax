@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/kamcpp/trax/pkg/common"
-	"github.com/kamcpp/trax/pkg/trax"
+	"github.com/xshyft/trax/pkg/common"
+	"github.com/xshyft/trax/pkg/trax"
 )
 
 type setDatabaseNameRequest struct {
