@@ -562,7 +562,7 @@ func publishDirect(ctx context.Context, ch *amqp.Channel, destName, messageType,
 type ConsumeOptions struct {
 	RequeueNack   bool
 	RepublishNack bool
-	// CallbackTimeout overrides the default 180s callback timeout.
+	// CallbackTimeout overrides the default 15m callback timeout.
 	// Set to 0 to use the default. Useful for consumers that handle
 	// long-running operations (e.g., sub-saga spawning/polling).
 	CallbackTimeout time.Duration
@@ -763,8 +763,10 @@ func ConsumeQueueWithOptionsAsync(
 				// T1-013, T1-014: Buffered channel to prevent deadlock
 				waitCh := make(chan bool, 1)
 
-				// Compute callback timeout once for use by both the inner goroutine and the outer wait
-				callbackTimeout := 180 * time.Second
+				// Compute callback timeout once for use by both the inner goroutine and the outer wait.
+				// Default raised from 180s to 15m: long-running steps (e.g. heavy ML inference)
+				// can routinely exceed several minutes per step.
+				callbackTimeout := 15 * time.Minute
 				if options.CallbackTimeout > 0 {
 					callbackTimeout = options.CallbackTimeout
 				}
@@ -834,10 +836,10 @@ func ConsumeQueueWithOptionsAsync(
 
 							// T1-015: Add timeout protection to callback execution to prevent goroutine leaks
 							// Execute callback with timeout monitoring
-							// Callback timeout (180s) allows for LASER operations that poll for async futures
-							// (e.g., blockchain transactions via lcmgr can take up to 120s for waitForReceipt,
-							// plus HTTP overhead and request processing time)
-							// This timeout must be less than the goroutine exit timeout (190s at line 721)
+							// Callback timeout (15m) allows for long-running steps that poll for async
+							// futures — e.g. diffusion-model image generation, or LASER blockchain
+							// transactions via lcmgr (waitForReceipt) plus HTTP/processing overhead.
+							// This timeout must be less than the goroutine exit timeout (callbackTimeout + 10s)
 							// to ensure callbacks complete before consumer restart
 							type callbackResult struct {
 								err error
